@@ -1,20 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace RequiredValueTypes;
 
 public record PersonInputModel
 {
-    public int Id { get; init; } // required
-    public int? Age { get; init; } // optional
-    public string Name { get; init; } = null!; // required
-    public string? OptionalName { get; init; } // optional
+    [Required(ErrorMessage = "Provide an ID for the user.")] public int Id { get; init; }
+    public int? Age { get; init; }
+    public string Name { get; init; } = null!;
 }
 
 public record PersonAtLocationInputModel
 {
-    public decimal Latitude { get; init; } // required
-    public decimal Longitude { get; init; } // required
-    public PersonInputModel Person { get; init; } = null!; // optional
+    [Required] public decimal Latitude { get; init; }
+    [Required] public decimal Longitude { get; init; }
+    public PersonInputModel Person { get; init; } = null!;
 }
 
 [Route("app")]

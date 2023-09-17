@@ -12,14 +12,18 @@ namespace RequiredValueTypes.RequiredValueTypes;
 public static class RequiredValueTypesExtensions {
     /// <summary>
     /// Require all non-nullable value types in input models to be provided implicitly.
+    /// Custom error message formats given to <see cref="RequiredAttribute"/> will be shown.
+    /// 
     /// Value types cannot be given default values with this implementation, as all of the values must be
     /// provided by the user.
     /// </summary>
-    public static IServiceCollection UseRequiredValueTypes(this IServiceCollection services) {
+    public static IServiceCollection UseImplicitRequiredValueTypes(this IServiceCollection services) {
         services.Configure<MvcOptions>(options => {
             options.ValueProviderFactories.Insert(0, new JsonValueProviderFactory());
             options.ModelBinderProviders.RemoveType<BodyModelBinderProvider>();
-            options.ModelBinderProviders.Insert(0, new ValueTypeModelBinderProvider(options.ModelBinderProviders));
+            options.ModelBinderProviders.Insert(0, new ValueTypeModelBinderProvider(
+                options.ModelBinderProviders,
+                isRequiredImplicit: true));
         });
 
         return services;
@@ -30,9 +34,11 @@ public static class RequiredValueTypesExtensions {
     /// </summary>
     public static IServiceCollection UseExplicitRequiredValueTypes(this IServiceCollection services) {
         services.Configure<MvcOptions>(options => {
-            options.ModelMetadataDetailsProviders.Add(new RequiredBindingMetadataProvider());
             options.ValueProviderFactories.Insert(0, new JsonValueProviderFactory());
             options.ModelBinderProviders.RemoveType<BodyModelBinderProvider>();
+            options.ModelBinderProviders.Insert(0, new ValueTypeModelBinderProvider(
+                options.ModelBinderProviders,
+                isRequiredImplicit: false));
         });
 
         return services;
