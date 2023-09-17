@@ -46,7 +46,8 @@ public static class RequiredValueTypesExtensions {
 
     /// <summary>
     /// Require all value types with <see cref="RequiredAttribute"/> to be bound. This doesn't include input
-    /// models provided through <see cref="FromBodyAttribute"/>, for example JSON.
+    /// models provided through <see cref="FromBodyAttribute"/>, for example JSON. No support for custom
+    /// error messages is included.
     /// </summary>
     public static IServiceCollection UseRequiredValueTypesExceptFromBody(this IServiceCollection services) {
         services.Configure<MvcOptions>(options => {
