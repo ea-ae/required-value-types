@@ -23,7 +23,7 @@ Now you can use the `[Required]` attribute in your input models and it'll work w
 ```csharp
 public record PersonInputModel
 {
-    [Required(ErrorMessage = "Provide an ID for the user.")] public int Id { get; init; }
+    [Required(ErrorMessage = "Provide an ID.")] public int Id { get; init; }
     public int? Age { get; init; }
     public string Name { get; init; } = null!;
 }
@@ -32,7 +32,7 @@ public record PersonAtLocationInputModel
 {
     [Required] public decimal Latitude { get; init; }
     [Required] public decimal Longitude { get; init; }
-    public PersonInputModel Person { get; init; } = null!;
+    [Required] public PersonInputModel Person { get; init; } = null!;
 }
 
 public class AppController : ControllerBase

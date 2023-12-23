@@ -15,7 +15,7 @@ public record PersonAtLocationInputModel
 {
     [Required] public decimal Latitude { get; init; }
     [Required] public decimal Longitude { get; init; }
-    public PersonInputModel Person { get; init; } = null!;
+    [Required] public PersonInputModel Person { get; init; } = null!;
 }
 
 [Route("app")]
