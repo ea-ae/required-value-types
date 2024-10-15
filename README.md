@@ -2,9 +2,7 @@
 
 How do you deal with required value types in input models without having to make all of them nullable?
 
-Implementation & sample controller are provided.
-
-[Read the article/tutorial here.](https://thom.ee/blog/clean-way-to-use-required-value-types-in-asp-net-core)
+Same implementation & controller are provided. Won't currently work with JSON arrays, since they weren't important for my personal use.
 
 ## How to use
 
