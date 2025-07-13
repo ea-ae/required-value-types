@@ -4,7 +4,7 @@ How do you deal with required value types in input models without having to make
 
 Same implementation & controller are provided. Won't currently work with JSON arrays, since they weren't important for my personal use.
 
-Codebase is unmaintained and could've been better (+ there's a missing Dispose call). But hoppefully it'll still be useful to someone.
+Codebase is unmaintained as I no longer work with ASP.NET, and it could've been better (+ there's a missing Dispose call). But hopefully it'll still be useful to someone.
 
 ## How to use
 
